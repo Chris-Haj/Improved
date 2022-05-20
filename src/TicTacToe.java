@@ -41,7 +41,6 @@ public class TicTacToe implements ActionListener {
             if (e.getSource() == game.getButtons(i) && game.getButtons(i).getText().equals("")) {
                 game.getButtons(i).setText(turn);
 
-
                 if (turn.equals("X")) {
                     game.getLabel().setText("Player 2's turn");
                     positions[i] = 'X';
@@ -62,15 +61,13 @@ public class TicTacToe implements ActionListener {
         }
         if(e.getSource()==game.getReset()){
             turn = "X";
-            Timer timer = new Timer(200,this);
-            String[] time = {"Resetting game","3...","2...","1...","Player 1's turn"};
-            for(int i=0 ;i < 9;i++){
+            for(int i=0 ;i < 9;i++) {
                 game.getButtons(i).setText("");
+                positions[i]=(char)('a'+i);
             }
-            timer.start();
-            int delay = timer.getDelay();
-            game.getLabel().setText(time[0]);
-            timer.stop();
+
+            game.getLabel().setText("Player 1's turn");
+
 
 
         }
@@ -78,24 +75,26 @@ public class TicTacToe implements ActionListener {
     }
 
     public boolean checkW() {
-        boolean win = false;
         if (positions[0] == positions[1] && positions[0] == positions[2])
-            win = true;
+            return true;
         else if (positions[0] == positions[3] && positions[0] == positions[6])
-            win = true;
+            return true;
         else if (positions[0] == positions[5] && positions[0] == positions[8])
-            win = true;
+            return true;
         else if (positions[4] == positions[2] && positions[4] == positions[6])
-            win = true;
+            return true;
         else if (positions[4] == positions[3] && positions[4] == positions[5])
-            win = true;
+            return true;
         else if (positions[4] == positions[1] && positions[4] == positions[7])
-            win = true;
+            return true;
         else if (positions[2] == positions[5] && positions[2] == positions[8])
-            win = true;
+            return true;
         else if (positions[6] == positions[7] && positions[6] == positions[8])
-            win = true;
-        return win;
+            return true;
+        else if(positions[0]==positions[4]&&positions[4]==positions[8])
+            return true;
+        else
+            return false;
     }
 }
 
